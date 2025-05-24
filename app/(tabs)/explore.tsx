@@ -19,7 +19,10 @@ export default function TabTwoScreen() {
             {"\n"}
             {"\n"}
           </Text>
-          <Text numberOfLines={5}>{bodyText}</Text>
+          <Text numberOfLines={5}>
+            {bodyText}{" "}
+            <Text style={styles.innerText}>I am the inner Text.</Text>
+          </Text>
         </Text>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -38,5 +41,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "red",
+  },
+  innerText: {
+    color: "cyan",
+    fontWeight: "condensedBold",
   },
 });
