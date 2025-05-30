@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   Button,
@@ -13,6 +14,7 @@ const initialText = "";
 
 export default function HomeScreen() {
   const [text, setText] = useState(initialText);
+  const router = useRouter();
 
   return (
     <SafeAreaProvider>
@@ -24,6 +26,10 @@ export default function HomeScreen() {
             onChangeText={setText}
             value={text}
             placeholder={"Please type here…"}
+          />
+          <Button
+            onPress={() => router.navigate("/about")}
+            title="Go to About"
           />
         </ScrollView>
       </SafeAreaView>
