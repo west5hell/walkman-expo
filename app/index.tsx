@@ -1,5 +1,6 @@
-import { Link, Stack } from "expo-router";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Stack } from "expo-router";
+import { useState } from "react";
+import { Button, Image, StyleSheet, Text } from "react-native";
 
 export default function Home() {
   //   const navigation = useNavigation();
@@ -7,25 +8,23 @@ export default function Home() {
   //   useEffect(() => {
   //     navigation.setOptions({ headerShown: false });
   //   }, [navigation]);
+  const [count, setCount] = useState(0);
 
   return (
-    <View style={styles.container}>
+    <>
       <Stack.Screen
         options={{
-          title: "My home",
-          headerStyle: { backgroundColor: "#f4511e" },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
           headerTitle: () => <LogoTitle />,
+          headerRight: () => (
+            <Button
+              onPress={() => setCount((c) => c + 1)}
+              title="Update count"
+            />
+          ),
         }}
       />
-      <Text>I'm in a Stack!</Text>
-      <Link href={{ pathname: "/details", params: { name: "Bacon" } }}>
-        Go to Details
-      </Link>
-    </View>
+      <Text>Count: {count}</Text>
+    </>
   );
 }
 
