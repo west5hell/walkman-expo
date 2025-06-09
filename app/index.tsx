@@ -1,50 +1,49 @@
-import { Stack } from "expo-router";
-import { useState } from "react";
-import { Button, Image, StyleSheet, Text } from "react-native";
+import { Link } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 
-export default function Home() {
-  //   const navigation = useNavigation();
-
-  //   useEffect(() => {
-  //     navigation.setOptions({ headerShown: false });
-  //   }, [navigation]);
-  const [count, setCount] = useState(0);
-
+export default function IndexScreen() {
   return (
-    <>
-      <Stack.Screen
-        options={{
-          headerTitle: () => <LogoTitle />,
-          headerRight: () => (
-            <Button
-              onPress={() => setCount((c) => c + 1)}
-              title="Update count"
-            />
-          ),
-        }}
-      />
-      <Text>Count: {count}</Text>
-    </>
-  );
-}
+    <View style={styles.container}>
+      <Text style={styles.text}>Index Screen</Text>
+      <Link href={"/second"} push asChild>
+        <Text style={styles.button}>Push to /second</Text>
+      </Link>
 
-function LogoTitle() {
-  return (
-    <Image
-      style={styles.image}
-      source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
-    />
+      <Link href={"/third"} push asChild>
+        <Text style={styles.button}>Push to /third</Text>
+      </Link>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    padding: 16,
   },
-  image: {
-    width: 50,
-    height: 50,
+  text: {
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 20,
+    fontWeight: "700",
+  },
+  button: {
+    fontWeight: "600",
+    fontSize: 18,
+    letterSpacing: 0.05 * 18,
+    textAlign: "center",
+    backgroundColor: "blue",
+    color: "white",
+    padding: 20,
+    marginBottom: 20,
   },
 });
+{
+  /* <AppText center size="heading" bold>
+        Index Screen
+      </AppText>
+      <Link href="/second" push asChild>
+        <Button title="Push to /second" />
+      </Link> */
+}

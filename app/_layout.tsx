@@ -1,19 +1,12 @@
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#f4511e",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-      }}
-    >
-      <Stack.Screen name="index" options={{}} />
-    </Stack>
+    <React.Fragment>
+      <StatusBar style="auto" />
+      <Stack />
+    </React.Fragment>
   );
 }
