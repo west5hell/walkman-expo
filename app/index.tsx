@@ -30,6 +30,14 @@ export default function IndexScreen() {
       <Link href={"/third"} push asChild>
         <Text style={styles.button}>Push to /third</Text>
       </Link>
+
+      <Pressable
+        onPress={() => {
+          router.push({ pathname: "/proverbs/[id]", params: { id: "1" } });
+        }}
+      >
+        <Text style={styles.text}>Push to /proverbs/1</Text>
+      </Pressable>
     </View>
   );
 }
