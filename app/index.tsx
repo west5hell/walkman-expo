@@ -38,6 +38,10 @@ export default function IndexScreen() {
       >
         <Text style={styles.text}>Push to /proverbs/1</Text>
       </Pressable>
+
+      <Link href={"/products/shoes/1234"} push asChild>
+        <Text style={styles.button}>Push to /products/shoes/1234</Text>
+      </Link>
     </View>
   );
 }
