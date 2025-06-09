@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 const proverbs = [
@@ -70,6 +70,7 @@ export default function ProverbScreen() {
   }
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: proverb.source }} />
       <Text style={styles.text}>"{proverb.proverb}"</Text>
       <Text>{proverb.source}</Text>
     </View>
