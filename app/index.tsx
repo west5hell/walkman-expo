@@ -1,13 +1,29 @@
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Link, useRouter } from "expo-router";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function IndexScreen() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Index Screen</Text>
       <Link href={"/second"} push asChild>
         <Text style={styles.button}>Push to /second</Text>
       </Link>
+
+      <Link
+        href={{ pathname: "/second", params: { name: "Kadi" } }}
+        push
+        asChild
+      >
+        <Text style={styles.button}>Greet Kadi on /second</Text>
+      </Link>
+      <Button
+        title="Greet Mary on /second"
+        onPress={() => {
+          router.push({ pathname: "/second", params: { name: "Mary" } });
+        }}
+      />
 
       <Link href={"/third"} push asChild>
         <Text style={styles.button}>Push to /third</Text>

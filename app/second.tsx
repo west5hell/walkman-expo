@@ -1,10 +1,15 @@
-import { Link } from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function SecondScreen() {
+  const params = useLocalSearchParams<{ name?: string }>();
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Second Screen</Text>
+      {params.name ? (
+        <Text style={styles.text}>Hello {params.name}</Text>
+      ) : null}
       <Link href={"/third"} push asChild>
         <Text style={styles.button}>Push to /third</Text>
       </Link>
