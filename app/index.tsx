@@ -1,47 +1,21 @@
-import { Link, useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet, Text, View } from "react-native";
 
-export default function IndexScreen() {
-  const router = useRouter();
-
+export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Index Screen</Text>
-      <Link href={"/second"} push asChild>
-        <Text style={styles.button}>Push to /second</Text>
-      </Link>
-
-      <Link
-        href={{ pathname: "/second", params: { name: "Kadi" } }}
-        push
-        asChild
+      <LinearGradient
+        // Background Linear Gradient
+        colors={["rgba(0,0,0,0.8)", "transparent"]}
+        style={styles.background}
+      />
+      <LinearGradient
+        // Button Linear Gradient
+        colors={["#4c669f", "#3b5998", "#192f6a"]}
+        style={styles.button}
       >
-        <Text style={styles.button}>Greet Kadi on /second</Text>
-      </Link>
-
-      <Pressable
-        onPress={() => {
-          router.push({ pathname: "/second", params: { name: "Mary" } });
-        }}
-      >
-        <Text style={styles.button}>Greet Mary on /second</Text>
-      </Pressable>
-
-      <Link href={"/third"} push asChild>
-        <Text style={styles.button}>Push to /third</Text>
-      </Link>
-
-      <Pressable
-        onPress={() => {
-          router.push({ pathname: "/proverbs/[id]", params: { id: "1" } });
-        }}
-      >
-        <Text style={styles.text}>Push to /proverbs/1</Text>
-      </Pressable>
-
-      <Link href={"/products/shoes/1234"} push asChild>
-        <Text style={styles.button}>Push to /products/shoes/1234</Text>
-      </Link>
+        <Text style={styles.text}>Sign in with Facebook</Text>
+      </LinearGradient>
     </View>
   );
 }
@@ -49,23 +23,25 @@ export default function IndexScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
     justifyContent: "center",
-    padding: 16,
+    backgroundColor: "orange",
   },
-  text: {
-    textAlign: "center",
-    fontSize: 20,
-    marginBottom: 20,
-    fontWeight: "700",
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 300,
   },
   button: {
-    fontWeight: "600",
-    fontSize: 18,
-    letterSpacing: 0.05 * 18,
-    textAlign: "center",
-    backgroundColor: "blue",
-    color: "white",
-    padding: 20,
-    marginBottom: 20,
+    padding: 15,
+    alignItems: "center",
+    borderRadius: 5,
+  },
+  text: {
+    backgroundColor: "transparent",
+    fontSize: 15,
+    color: "#fff",
   },
 });
