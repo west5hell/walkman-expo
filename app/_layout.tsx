@@ -12,7 +12,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack></Stack>
+      <Stack />
       <StatusBar style="auto" />
     </ThemeProvider>
   );
