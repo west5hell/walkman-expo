@@ -1,6 +1,6 @@
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const DATA = [
@@ -59,10 +59,18 @@ function Item({ title }: ItemProps) {
 export default function App() {
   const navigation = useNavigation();
   const [refreshing, setRefreshing] = useState(false);
+  const [timesPressed, setTimesPressed] = useState(0);
 
   useEffect(() => {
     navigation.setOptions({ headerTitle: "Home" });
   }, [navigation]);
+
+  let textLog = "";
+  if (timesPressed > 1) {
+    textLog = timesPressed + "x onPress";
+  } else if (timesPressed > 0) {
+    textLog = "onPress";
+  }
 
   const handleRefresh = () => {
     setRefreshing(true);
@@ -75,6 +83,24 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
+        <View>
+          <Pressable
+            onPress={() => {
+              setTimesPressed((current) => current + 1);
+            }}
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "rgb(210, 230, 255)" : "white",
+              },
+              styles.wrapperCustom,
+            ]}
+          >
+            {({ pressed }) => <Text>{pressed ? "Pressed!" : "Press Me"}</Text>}
+          </Pressable>
+          <View style={styles.logBox}>
+            <Text testID="pressable_press_console">{textLog}</Text>
+          </View>
+        </View>
         <FlatList
           data={DATA}
           renderItem={({ item }) => <Item title={item.title} />}
@@ -99,5 +125,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  text: {
+    fontSize: 16,
+  },
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6,
+  },
+  logBox: {
+    padding: 20,
+    margin: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "#f0f0f0",
+    backgroundColor: "#f9f9f9",
   },
 });
