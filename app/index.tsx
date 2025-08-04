@@ -42,7 +42,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleItemOnPress = () => {
-    router.push("/button-example");
+    router.push("/core-components/button-example");
   };
 
   return (
