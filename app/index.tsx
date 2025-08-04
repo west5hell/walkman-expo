@@ -1,6 +1,14 @@
 import * as Crypto from "expo-crypto";
+import { useRouter } from "expo-router";
 import React from "react";
-import { FlatList, StatusBar, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Pressable,
+  PressableProps,
+  StatusBar,
+  StyleSheet,
+  Text,
+} from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 type DataType = {
@@ -20,26 +28,31 @@ const DATA: DataType[] = [
   createData("KeyboardAvoidingView"),
 ];
 
-type ItemProps = { title: string };
+type ItemProps = { title: string } & PressableProps;
 
-function Item({ title }: ItemProps) {
+function Item({ title, ...props }: ItemProps) {
   return (
-    <View style={styles.item}>
+    <Pressable onPress={props.onPress} style={styles.item}>
       <Text style={styles.title}>{title}</Text>
-    </View>
+    </Pressable>
   );
 }
 
 export default function Home() {
-  const handle = () => {
-    const id = crypto.randomUUID();
+  const router = useRouter();
+
+  const handleItemOnPress = () => {
+    router.push("/button-example");
   };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <FlatList
           data={DATA}
-          renderItem={({ item }) => <Item title={item.title} />}
+          renderItem={({ item }) => (
+            <Item title={item.title} onPress={handleItemOnPress} />
+          )}
           keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
