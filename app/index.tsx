@@ -42,7 +42,8 @@ export default function Home() {
   const router = useRouter();
 
   const handleItemOnPress = () => {
-    router.push("/core-components/button-example");
+    // router.push("/core-components/button-example");
+    router.push("/core-components/keyboardAvodingview-example");
   };
 
   return (

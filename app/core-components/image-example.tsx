@@ -19,10 +19,10 @@ export default function DisplayAnImage() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Image
+        {/* <Image
           style={styles.tinyLogo}
           source={require("@expo/snack-static/react-native-logo.png")}
-        />
+        /> */}
         <Image
           style={styles.tinyLogo}
           source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}

@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: "#000000",
+    borderColor: "#e5e5e5",
     borderBottomWidth: 1,
     marginBottom: 36,
+    color: "red",
   },
   btnContainer: {
     backgroundColor: "white",
